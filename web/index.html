@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        .block {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            font-size: 18px;
+            line-height: 20px;
+            text-align: center;
+            margin-top: -4px;
+        }
+
+        .mark {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<p>
+    Start a forest fire. Why not. Play around with the spread chance. Click a tree to start a fire.
+</p>
+<p>
+    Chance of fire spreading: <input type="number" id="spread-chance" value="50">%<br>
+    Chance of regrowth: <input type="number" id="regrow-chance" value="1">%
+</p>
+<div id="field">
+
+</div>
+</body>
+<script src="dist/app.js"></script>
+<script>
+    
+
+    /*
+    var spreadChance = document.getElementById('spread-chance');
+    var regrowChance = document.getElementById('regrow-chance');
+
+    var createNode = function (tag, className, content) {
+
+        var element = document.createElement('div');
+        element.textContent = content || '';
+
+        element.classList.add(className);
+
+        return element;
+
+    };
+
+    var field = document.getElementById('field');
+
+    var Agent = function (row, column) {
+
+        var that = this;
+
+        //Agent needs to know where it is.
+        this.row = row;
+        this.column = column;
+
+        this.element = createNode('div', 'block');
+        this.state = null;
+        this.states = {
+
+            nothing: {
+                icon: '🌾',
+                step: function (agent) {
+                    var regenerate = (Math.random() <= (parseInt(regrowChance.value) / 100));
+
+                    if (regenerate) {
+                        agent.changeState('tree');
+                    }
+                }
+            },
+
+            tree: {
+                icon: '🌲',
+                step: function (agent) {
+
+                    var neighborStates = agent.getNeighborStates();
+                    var spreadFire     = (Math.random() <= (parseInt(spreadChance.value) / 100));
+
+                    if (neighborStates.indexOf('fire') >= 0 && spreadFire) {
+                        agent.changeState('fire');
+                    }
+
+                }
+
+            },
+
+            fire: {
+                icon: '🔥',
+                step: function (agent) {
+                    agent.changeState('nothing');
+                }
+            }
+
+        };
+
+        this.changeState('tree');
+        this.propogateState();
+
+        this.element.onclick = function () {
+
+            that.changeState('fire');
+            that.getNeighborStates();
+
+        }
+
+    };
+
+    Agent.prototype.getNeighborStates = function () {
+
+        var states = [];
+
+        var listPos = (rows * this.row) + (this.column);
+        var rowLength = columns;
+
+        var topLeft = listPos - (rowLength + 1);
+        var top = listPos - rowLength;
+        var topRight = listPos - (rowLength - 1);
+
+        if ((topLeft % rows) + 1 !== this.column) {
+            topLeft = -1;
+        }
+
+        if ((top % rows) !== this.column) {
+            top = -1;
+        }
+
+        if ((topRight % rows) - 1 !== this.column) {
+            topRight = -1;
+        }
+
+        var midLeft = listPos - 1;
+        var midRight = listPos + 1;
+
+        if ((midLeft % rows) + 1 !== this.column) {
+            midLeft = -1;
+        }
+
+        if ((midRight % rows) - 1 !== this.column) {
+            midRight = -1;
+        }
+
+        var bottomLeft = listPos + (rowLength + 1);
+        var bottom = listPos + rowLength;
+        var bottomRight = listPos + (rowLength - 1);
+
+        if ((bottomLeft % rows) - 1 !== this.column) {
+            bottomLeft = -1;
+        }
+
+        if ((bottom % rows) !== this.column) {
+            bottom = -1;
+        }
+
+        if ((bottomRight % rows) + 1 !== this.column) {
+            bottomRight = -1;
+        }
+
+        var vals = [topLeft, top, topRight, midLeft, midRight, bottomLeft, bottom, bottomRight];
+
+        var i = 0;
+
+        vals.forEach(function (val) {
+
+            if (typeof agents[val] !== 'undefined') {
+                states.push(agents[val].state);
+            }
+
+        });
+
+        return states;
+
+    };
+
+    Agent.prototype.takeStep = function () {
+
+        this.states[this.state].step(this);
+
+    };
+
+    Agent.prototype.changeState = function (state) {
+
+        this.nextState = state;
+
+    };
+
+    Agent.prototype.propogateState = function () {
+
+        this.element.textContent = this.states[this.nextState].icon;
+        this.state = this.nextState;
+
+    };
+
+    function createAgent(rowElement, row, column) {
+
+        var agent = new Agent(row, column);
+        rowElement.appendChild(agent.element);
+
+        agents.push(agent);
+
+    }
+
+    var agents = [];
+    var rows = 20;
+    var columns = 20;
+
+    for (var row = 0; row < rows; row++) {
+
+        var rowElement = createNode('div');
+        field.appendChild(rowElement);
+
+        for (var column = 0; column < columns; column++) {
+            createAgent(rowElement, row, column);
+        }
+
+    }
+
+    function advanceStates() {
+
+        agents.forEach(function (agent) {
+
+            agent.takeStep();
+
+        });
+
+    }
+
+    function propogateStates() {
+
+        agents.forEach(function (agent) {
+
+            agent.propogateState();
+
+        });
+
+    }
+
+    setInterval(function () {
+
+        advanceStates();
+        propogateStates();
+
+    }, 300);
+    */
+    
+</script>
+</html>
